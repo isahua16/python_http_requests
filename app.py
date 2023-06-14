@@ -2,10 +2,13 @@ from dbhelpers import run_statement
 from dbcreds import production_mode
 from apihelpers import check_data
 from flask import Flask, request, make_response, jsonify
+import requests
+
 app = Flask(__name__)
-@app.get('')
-def new_function():
-    return
+
+r = requests.get('https://feeds.soundcloud.com/users/soundcloud:users:507467241/sounds.rss')
+print(r.text)
+
 if(production_mode == True):
     print('Running in production mode')
     import bjoern # type: ignore
